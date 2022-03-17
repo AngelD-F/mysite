@@ -16,13 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from django.http import HttpRequest
+from django.http import HttpResponse
 
 def home(request):
-    return HttpRequest("Home Page!")
+    return HttpResponse("Home Page!")
 
 def contact(request):
-    return HttpRequest("Contact Page!")
+    return HttpResponse("Contact Page!")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
