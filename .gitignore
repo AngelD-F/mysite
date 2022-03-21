@@ -130,3 +130,5 @@ dmypy.json
 
 #
 secret.py
+
+.vscode/
