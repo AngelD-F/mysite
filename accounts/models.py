@@ -1,6 +1,3 @@
-from telnetlib import STATUS
-from traceback import print_exception
-from unicodedata import category, name
 from django.db import models
 
 # Create your models here.
