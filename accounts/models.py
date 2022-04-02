@@ -19,7 +19,7 @@ class tag(models.Model):
 
 class product(models.Model):
     CATEGORY = (
-        ("Ondoor", "Indoor"),
+        ("Indoor", "Indoor"),
         ("Out door", "Out door"),
     )
 
