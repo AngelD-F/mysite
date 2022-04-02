@@ -8,7 +8,17 @@ def home(request):
     orders = mdl.order.objects.all()
     customers = mdl.customer.objects.all()
 
-    ctx = {'orders': orders, 'customers': customers}
+    total_orders = orders.count()
+    total_pending_orders = orders.filter(status='Pending').count()
+    total_delivered_orders = orders.filter(status='Delivered').count()
+
+    ctx = {
+        'orders': orders, 
+        'customers': customers,
+        'total_orders': total_orders,
+        'total_pending': total_pending_orders,
+        'total_delivered': total_delivered_orders
+    }
 
     return render(request, 'accounts/dashboard.html', ctx)
 
