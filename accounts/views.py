@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 from . import models as mdl
@@ -26,5 +26,12 @@ def products(request):
     products = mdl.product.objects.all()
     return render(request, 'accounts/products.html', {'products': products})
 
-def customer(request):
-    return render(request, 'accounts/customer.html')
+def customer(request, pk):
+    customer = get_object_or_404(mdl.customer, id=pk)
+    c_orders = customer.order_set.all()
+    c_total = c_orders.count()
+
+    ctx = {'customer': customer, 'orders': c_orders, 'orders_total':c_total}
+
+    return render(request, 'accounts/customer.html', ctx)
+
