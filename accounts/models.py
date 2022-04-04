@@ -11,11 +11,13 @@ class customer(models.Model):
     def __str__(self):
         return self.name
 
+
 class tag(models.Model):
     name = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return self.name
+
 
 class product(models.Model):
     CATEGORY = (
@@ -32,6 +34,7 @@ class product(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class order(models.Model):
     STATUS = (

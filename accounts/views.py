@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from . import models as mdl
 # Create your views here.
 
+
 def home(request):
     orders = mdl.order.objects.all()
     customers = mdl.customer.objects.all()
@@ -22,9 +23,14 @@ def home(request):
 
     return render(request, 'accounts/dashboard.html', ctx)
 
+
 def products(request):
     products = mdl.product.objects.all()
-    return render(request, 'accounts/products.html', {'products': products})
+
+    ctx = {'products': products}
+
+    return render(request, 'accounts/products.html', )
+
 
 def customer(request, pk):
     customer = get_object_or_404(mdl.customer, id=pk)
@@ -34,4 +40,10 @@ def customer(request, pk):
     ctx = {'customer': customer, 'orders': c_orders, 'orders_total':c_total}
 
     return render(request, 'accounts/customer.html', ctx)
+
+
+def createOrder(request):
+    ctx = {}
+    
+    return render(request, 'accounts/order_form.html', ctx)
 
