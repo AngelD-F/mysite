@@ -29,7 +29,7 @@ def products(request):
 
     ctx = {'products': products}
 
-    return render(request, 'accounts/products.html', )
+    return render(request, 'accounts/products.html', ctx)
 
 
 def customer(request, pk):
@@ -42,7 +42,7 @@ def customer(request, pk):
     return render(request, 'accounts/customer.html', ctx)
 
 
-def createOrder(request):
+def create_order(request):
     ctx = {}
     
     return render(request, 'accounts/order_form.html', ctx)
