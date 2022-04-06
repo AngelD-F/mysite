@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 
 from . import models as mdl
+from .forms import orderForm
 # Create your views here.
 
 
@@ -43,7 +44,18 @@ def customer(request, pk):
 
 
 def create_order(request):
-    ctx = {}
+    form = orderForm()
+    if request.method == 'POST':
+        # print('Printing POST: ', request.POST)
+        form = orderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    ctx = {'form': form}
     
     return render(request, 'accounts/order_form.html', ctx)
 
+
+def update_order(request):
+    pass
