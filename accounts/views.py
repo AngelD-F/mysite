@@ -21,7 +21,6 @@ def home(request):
         'total_pending': total_pending_orders,
         'total_delivered': total_delivered_orders
     }
-
     return render(request, 'accounts/dashboard.html', ctx)
 
 
@@ -29,7 +28,6 @@ def products(request):
     products = mdl.product.objects.all()
 
     ctx = {'products': products}
-
     return render(request, 'accounts/products.html', ctx)
 
 
@@ -39,7 +37,6 @@ def customer(request, pk):
     c_total = c_orders.count()
 
     ctx = {'customer': customer, 'orders': c_orders, 'orders_total':c_total}
-
     return render(request, 'accounts/customer.html', ctx)
 
 
@@ -52,10 +49,19 @@ def create_order(request):
             form.save()
             return redirect('/')
 
-    ctx = {'form': form}
-    
+    ctx = {'form': form}    
     return render(request, 'accounts/order_form.html', ctx)
 
 
-def update_order(request):
-    pass
+def update_order(request, pk):
+    order = get_object_or_404(mdl.order, id=pk)
+    form = orderForm(instance=order)
+
+    if request.method == 'POST':
+        form = orderForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    ctx = {'form': form}    
+    return render(request, 'accounts/order_form.html', ctx)
