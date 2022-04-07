@@ -61,7 +61,21 @@ def update_order(request, pk):
         form = orderForm(request.POST, instance=order)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            url = request.GET.get('next', '/')
+            return redirect(url)
 
     ctx = {'form': form}    
     return render(request, 'accounts/order_form.html', ctx)
+
+
+def delete_order(request, pk):
+    order = get_object_or_404(mdl.order, id=pk)
+
+    if request.method == 'POST':
+        order.delete()
+        url = request.GET.get('next', '/')
+        return redirect(url)
+
+    ctx = {'item': order}
+    return render(request, 'accounts/delete.html', ctx)
+
