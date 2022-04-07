@@ -43,8 +43,9 @@ def customer(request, pk):
     return render(request, 'accounts/customer.html', ctx)
 
 
-def create_order(request):
-    form = orderForm()
+def create_order(request, pk):
+    customer = get_object_or_404(mdl.customer, id=pk)
+    form = orderForm(initial={'customer':customer})
     if request.method == 'POST':
         # print('Printing POST: ', request.POST)
         form = orderForm(request.POST)
