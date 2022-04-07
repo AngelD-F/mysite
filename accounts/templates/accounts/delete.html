@@ -1,12 +1,20 @@
 {% extends 'accounts/main.html' %}
 {% block content %}
 
-<p>Are you sure you want to delete "{{item}}"?</p>
-<form action="" method="post">
-    {% csrf_token %}
-    <input type="hidden" name="next" value="{{request.GET.path}}"/>
-    <a class="btn btn-sm btn-outline-info" href="{% url 'home' %}">Cancel</a>
-    <input class="btn btn-sm btn-outline-danger" type="submit" name="confirm">
-</form>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body">
+
+            <p>Are you sure you want to delete "{{item}}"?</p>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{request.GET.path}}"/>
+                <a class="btn btn-sm btn-warning" href="{% url 'home' %}">Cancel</a>
+                <button class="btn btn-sm btn-danger" type="submit" name="confirm" >Borrar</button>
+            </form>
+
+        </div>
+    </div>
+</div>
 
 {% endblock %}

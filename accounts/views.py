@@ -19,7 +19,7 @@ def home(request):
         'customers': customers,
         'total_orders': total_orders,
         'total_pending': total_pending_orders,
-        'total_delivered': total_delivered_orders
+        'total_delivered': total_delivered_orders,
     }
     return render(request, 'accounts/dashboard.html', ctx)
 
@@ -27,7 +27,10 @@ def home(request):
 def products(request):
     products = mdl.product.objects.all()
 
-    ctx = {'products': products}
+    ctx = {
+        'activeNav': 1,
+        'products': products,
+    }
     return render(request, 'accounts/products.html', ctx)
 
 
