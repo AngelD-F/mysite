@@ -1,4 +1,3 @@
-from django.forms import SelectDateWidget
 import django_filters
 from django_filters import DateFilter
 
@@ -9,13 +8,11 @@ class orderFilter(django_filters.FilterSet):
         field_name='date_created',
         lookup_expr='gte',
         label='Creado desde',
-        widget=SelectDateWidget()
     )
     end_date = DateFilter(
         field_name='date_created',
         lookup_expr='lte',
         label='Creado hasta',
-        widget=SelectDateWidget()
     )
 
     class Meta:
