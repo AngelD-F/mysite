@@ -75,10 +75,18 @@
 					<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}?next={{ request.path|urlencode }}">Remove</a></td>
 				</tr>
 				{% endfor %}
-
 			</table>
 		</div>
 	</div>
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+<!--DATE PICKER-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css" integrity="sha512-YdYyWQf8AS4WSB0WWdc3FbQ3Ypdm0QCWD2k4hgfqbQbRCJBEgX0iAegkl2S1Evma5ImaVXLBeUkIlP6hQ1eYKQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js" integrity="sha512-RCgrAvvoLpP7KVgTkTctrUdv7C6t7Un3p1iaoPr1++3pybCyCsCZZN7QEHMZTcJTmcJ7jzexTO+eFpHk4OCFAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+	$('[data-toggle="datepicker"]').datepicker();
+</script>
 {% endblock %}
