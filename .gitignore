@@ -132,3 +132,5 @@ dmypy.json
 secret.py
 
 .vscode/
+
+library_directory
